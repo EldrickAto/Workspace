@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <link rel="stylesheet" href="stylesheets/stylesheet.css" />
+  </head>
+  <body>
+    <h1>Startseite</h1>
 
-<h1>Startseite</h1>
-<script async src="https://cse.google.com/cse.js?cx=c25063a2d1b094ff2">
-</script>
-<div class="gcse-search"></div>
+    <!--Google Search Bar-->
+    <form role="search" id="form">
+      <input
+        type="search"
+        id="query"
+        name="q"
+        placeholder="Search..."
+        aria-label="Search through site content"
+      />
+    </form>
 
-<a href="https://www.youtube.com">
-    <img src="/src/YT icon.webp" alt="YouTube Link" style="width: 50; height: 50px;">
-</a>
-<a href="https://www.twitch.tv">
-    <img src="/src/Twitch.png" alt="Twitch Link" style="width: 50px; height: 50px;">
-</a>
-<a href="https://www.amazon.com">
-    <img src="/src/Amazon.png" alt="Amazon Link" style="width: 70px; height: 50px;">
-</a>
-<a href="https://www.github.com">
-    <img src="/src/Github.jpg" alt="Github Link" style="width: 50px; height: 50px;">
-</a>
-<a href="https://www.aniwave.to/home">
-    <img src="/src/Crunchyroll.png" alt="AniWave Link" style="width: 70px; height: 50px;">
-</a>
-</body>
+    <script>
+      const f = document.getElementById("form");
+      const q = document.getElementById("query");
+      const google = "https://www.google.com/search?q=";
+
+      function submitted(event) {
+        event.preventDefault();
+        const url = google + q.value;
+        const win = window.open(url, "_blank");
+        win.focus();
+      }
+
+      f.addEventListener("submit", submitted);
+    </script>
+
+    <!-- Hyperlinks-->
+    <a href="https://www.youtube.com">
+      <img
+        src="/src/YT_icon.png"
+        alt="YouTube Link"
+        style="width: 100px; height: 90px"
+      />
+    </a>
+    <a href="https://www.twitch.tv">
+      <img
+        src="/src/Twitch.png"
+        alt="Twitch Link"
+        style="width: 100px; height: 100px"
+      />
+    </a>
+    <a href="https://www.amazon.com">
+      <img
+        src="/src/Amazon.png"
+        alt="Amazon Link"
+        style="width: 100px; height: 100px"
+      />
+    </a>
+    <a href="https://www.github.com">
+      <img
+        src="/src/Github.png"
+        alt="Github Link"
+        style="width: 100px; height: 100px"
+      />
+    </a>
+    <a href="https://www.aniwave.to/home">
+      <img
+        src="/src/Crunchyroll.png"
+        alt="AniWave Link"
+        style="width: 100px; height: 100px"
+      />
+    </a>
+  </body>
 </html>

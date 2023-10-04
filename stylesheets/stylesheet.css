@@ -1,0 +1,13 @@
+/* Hintergrund*/
+body {
+    background-image: url('/src/Background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+#query {
+    /*some other code like positioning*/
+    background-color: rgba(255,0,0,0.5);
+    font-style: ;
+}
