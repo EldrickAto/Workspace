@@ -1,6 +1,6 @@
 /* Hintergrund*/
 body {
-    background-image: url('/src/Background.jpg');
+    background-image: url("../src/Background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover, contain;
@@ -29,6 +29,6 @@ div {
   margin-top: 5%;
 }
 /* Taschenrechner*/
-.calc_keys{
+#calculator__keys{
   display: grid;
 }
