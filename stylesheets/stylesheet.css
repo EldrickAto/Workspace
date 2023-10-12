@@ -28,3 +28,7 @@ div {
   text-align: center;
   margin-top: 5%;
 }
+/* Taschenrechner*/
+.calc_keys{
+  display: grid;
+}
