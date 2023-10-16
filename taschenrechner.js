@@ -62,46 +62,94 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 */
 
+//Selectors
 
-document.addEventListener("DOMContentLoaded", function(){
+const decimal = document.getElementById("decimal");
+const clear = document.getElementById("clear");
+// Selects a h1 element that holds the input and result
+const displayValElement = document.getElementById("display__numbers");
+// Selectsthe buttons with the 10 digits (0-9)
+const btnNumbers = document.getElementsByClassName("btn--number");
+//Selects the buttons for operators (add/subtracts/divide/multiply) and equals operator
+const btnOperators = document.getElementById("btn--operator");
 
-    const calculator = document.querySelector('.calculator')
-    const keys = calculator.querySelector('.calculator__keys')
+var displayVal = "0";
+var pendingVal;
+var evalStringArray = [];
 
-    keys.addEventListener('click', e => {
-    if (e.target.matches('button')) {
-    
-        const key = e.target
-        const action = key.dataset.action
-        
-        if (!action) {
-            console.log('number key!')
-          }
+for (let i = 0; i < btnNumbers.length; i++) {
+  btnNumbers[i].addEventListener("click", updateDisplayVal); //function
+}
+for (let i = 0; i < btnOperators.length; i++) {
+  btnOperators[i].addEventListener("click", performOperation); //function
+}
 
-        if (
-        action === 'add' ||
-        action === 'subtract' ||
-        action === 'multiply' ||
-        action === 'divide'
-        ) {
-        console.log('operator key!')
-        }
+//Updating the display field
+updateDisplayVal = (e) => {
+  var btnText = e.target.innerText;
+  if (displayVal === "0") {
+    displayVal = "";
+  }
+  //Append the content of the button we clicked to our displayVal variable and display it
+  displayVal += btnText;
+  displayValElement.innerText = displayVal;
+};
 
-        if (action === 'decimal') {
-            console.log('decimal key!')
-          }
-          
-          if (action === 'clear') {
-            console.log('clear key!')
-          }
-          
-          if (action === 'calculate') {
-            console.log('equal key!')
-          }
-    }
-})
+performOperation = (e) => {
+  var operator = e.target.innerText;
 
-});
+  switch (operator) {
+    case "+":
+      pendingVal = displayVal;
+      displayVal = "0";
+      displayValElement.innerText = displayVal;
+      evalStringArray.push(pendingVal);
+      evalStringArray.push("+");
+      break;
+    case "-":
+      pendingVal = displayVal;
+      displayVal = "0";
+      displayValElement.innerText = displayVal;
+      evalStringArray.push(pendingVal);
+      evalStringArray.push("-");
+      break;
+    case "×":
+      pendingVal = displayVal;
+      displayVal = "0";
+      displayValElement.innerText = displayVal;
+      evalStringArray.push(pendingVal);
+      evalStringArray.push("*");
+      break;
+    case "÷":
+      pendingVal = displayVal;
+      displayVal = "0";
+      displayValElement.innerText = displayVal;
+      evalStringArray.push(pendingVal);
+      evalStringArray.push("/");
+      break;
+    case "÷":
+      evalStringArray.push(displayVal);
+      var evaluation = eval(evalStringArray.join(" "));
+      displayVal = evaluation + "";
+      displayValElement.innerText = displayVal;
+      evalStringArray = []; //clear the array
+      break;
+    default:
+      break;
+  }
+};
+// On clicking the clear button, all values and the display are being reset
+clear.onclick = () => {
+  displayVal = "0";
+  pendingVal = undefined;
+  evalStringArray = [];
+  displayValElement.innerHTML = displayVal;
+};
 
-
-
+// Not allowing two decimal points in input
+decimal.onclick = () => {
+  if (!displayVal.includes(".")) {
+    displayVal += ".";
+  }
+  displayValElement.innerText = displayVal;
+};
